@@ -3,7 +3,7 @@ const fs = require("fs");
 const debug = require("debug")("write");
 
 module.exports = function write(path, solution) {
-  writeLines(path, unparse(solution));
+  writeLines(path, solution);
 };
 
 function writeLines(path, lines) {
