@@ -13,7 +13,7 @@ function solve(problem) {
     .fill()
     .map(() => []);
 
-  /*  rides = rides.sort((a, b) => {
+  rides = rides.sort((a, b) => {
     const distA = distance(0, 0, a.ox, a.oy);
     const distB = distance(0, 0, b.ox, b.oy);
 
@@ -22,7 +22,6 @@ function solve(problem) {
 
     return a.start - b.start;
   });
-  */
 
   const copyRides = [...rides];
 
