@@ -5,7 +5,7 @@ const distance = require("./distance");
 
 function solve(problem) {
   // destructure this!
-  const { rides, nvehicules, nsteps } = problem;
+  let { rides, nvehicules, nsteps } = problem;
 
   let count = 0;
 
@@ -13,7 +13,18 @@ function solve(problem) {
     .fill()
     .map(() => []);
 
+  rides = rides.sort((a, b) => {
+    const distA = distance(0, 0, a.ox, a.oy);
+    const distB = distance(0, 0, b.ox, b.oy);
+
+    if (distA < distB) return -1;
+    if (distA > distB) return 1;
+
+    return a.start - b.start;
+  });
+
   const copyRides = [...rides];
+
   let max = nvehicules - 1;
 
   let index = 0;
