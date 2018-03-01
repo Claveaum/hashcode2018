@@ -1,6 +1,7 @@
 const debug = require("debug")("solve");
 const _ = require("lodash");
 const gridUtils = require("./grid-utils");
+//const distance = require('distance')
 
 function solve(problem) {
   // destructure this!
@@ -8,7 +9,9 @@ function solve(problem) {
 
   let count = 0;
 
-  const result = {};
+  const stack = Array(nvehicules)
+    .fill()
+    .map(() => []);
 
   rides.forEach((ride, index) => {
     if (index % nvehicules === 0) {
@@ -17,11 +20,10 @@ function solve(problem) {
       count++;
     }
 
-    result[count] = !result[count] ? [index] : [...result[count], index];
+    stack[count].push(index);
   });
 
-  console.log(result);
-  return _.map(result, ridesPerVehicle => {
+  return _.map(stack, ridesPerVehicle => {
     return `${ridesPerVehicle.length} ${ridesPerVehicle.join(" ")}`;
   });
 }
