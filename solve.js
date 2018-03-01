@@ -4,16 +4,26 @@ const gridUtils = require("./grid-utils");
 
 function solve(problem) {
   // destructure this!
-  const { rides, nsteps } = problem;
+  const { rides, nvehicules } = problem;
 
-  /*
-  nsteps.forEach((step, index) => {
-  })
-  */
+  let count = 0;
 
-  const result = rides.map((ride, index) => `1 ${index}`);
+  const result = {};
 
-  return result;
+  rides.forEach((ride, index) => {
+    if (index % nvehicules === 0) {
+      count = 0;
+    } else {
+      count++;
+    }
+
+    result[count] = !result[count] ? [index] : [...result[count], index];
+  });
+
+  console.log(result);
+  return _.map(result, ridesPerVehicle => {
+    return `${ridesPerVehicle.length} ${ridesPerVehicle.join(" ")}`;
+  });
 }
 
 module.exports = solve;
