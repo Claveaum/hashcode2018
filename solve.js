@@ -17,11 +17,12 @@ function solve(problem) {
     const distA = distance(0, 0, a.ox, a.oy);
     const distB = distance(0, 0, b.ox, b.oy);
 
-    if (distA < distB) return -1;
-    if (distA > distB) return 1;
+    if (a.start < b.start) return -1;
+    if (a.start > b.start) return 1;
 
-    return a.start - b.start;
+    return distA - distB;
   });
+  console.log(rides);
 
   const copyRides = [...rides];
 
